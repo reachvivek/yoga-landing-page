@@ -1,5 +1,5 @@
 <!-- Modern Minimal Loader -->
-<div id="breathingLoader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
+<div *ngIf="showLoader" id="breathingLoader" class="fixed inset-0 bg-white z-[9999] flex items-center justify-center">
   <div class="text-center">
     <!-- Minimalist Loading Animation -->
     <div class="relative mb-12">
@@ -1164,18 +1164,7 @@
 }
 
 /* Loader styling */
-#breathingLoader {
-  display: none;
-}
-
-#breathingLoader.active {
-  display: flex !important;
-}
-
-/* Prevent scrolling during loader */
-body.loading {
-  overflow: hidden;
-}
+/* Loader styling is now handled by Angular *ngIf */
 
 /* Disable default smooth scrolling to use custom implementation */
 html {
@@ -1287,33 +1276,10 @@ function setCurrentYear() {
 
 
 
-// Loader functionality
+// Initialize page functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Set current year
   setCurrentYear();
-  
-  
-  const loader = document.getElementById('breathingLoader');
-  
-  // Add loading class to body to prevent scrolling
-  document.body.classList.add('loading');
-  
-  // Show loader initially
-  loader.classList.add('active');
-  loader.style.opacity = '1';
-  
-  // Hide loader after 3 seconds
-  setTimeout(() => {
-    loader.style.opacity = '0';
-    loader.style.transition = 'opacity 0.8s ease-out';
-    setTimeout(() => {
-      loader.classList.remove('active');
-      loader.style.display = 'none';
-      // Remove loading class and restore scrolling
-      document.body.classList.remove('loading');
-      document.body.style.overflow = 'auto';
-    }, 800);
-  }, 3000);
 
   // Initialize scroll animations
   initScrollAnimations();

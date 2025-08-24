@@ -12,6 +12,7 @@ export class App implements OnInit {
   protected title = 'Ksenia Rapcunová - Yoga & Meditation Teacher';
   mobileMenuOpen = false;
   navbarScrolled = false;
+  showLoader = true;
 
   scrollDownOneScreen() {
     const startPosition = window.pageYOffset;
@@ -47,6 +48,11 @@ export class App implements OnInit {
   }
 
   ngOnInit() {
+    // Hide loader after 3 seconds with smooth transition
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 3000);
+    
     // Initialize counter animations when component loads
     this.initCounterAnimations();
     
